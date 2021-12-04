@@ -11,10 +11,15 @@
 1. npm init
 2. git init
 
-> ### React
+> ### CSS
 
-1. react
-2. react-dom
+1. bootstrap
+2. @fortawesome/fontawesome-free
+
+   > ### React
+
+3. react
+4. react-dom
 
 > ### Webpack & Babel
 
@@ -25,6 +30,8 @@
 5. @babel/core
 6. @babel/preset-env
 7. @babel/preset-react
+8. style-loader
+9. css-loader
 
 > ### ESLint & Prettier
 >

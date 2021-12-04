@@ -21,6 +21,10 @@ module.exports = {
         //   presets: ["@babel/preset-env", "@babel/preset-react"],
         // },
       },
+      {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
     ],
   },
   plugins: [
@@ -36,7 +40,7 @@ module.exports = {
       directory: path.join(__dirname, "src"),
     },
     hot: true,
-    open: true,
+    open: false,
     historyApiFallback: true,
   },
 };
