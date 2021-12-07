@@ -8,6 +8,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
+    publicPath: "/",
     // publicPath: "/dist", // the url to the output directory resolved relative to the HTML page
   },
   module: {
@@ -39,8 +40,8 @@ module.exports = {
     static: {
       directory: path.join(__dirname, "src"),
     },
+    historyApiFallback: true,
     hot: true,
     open: false,
-    historyApiFallback: true,
   },
 };
