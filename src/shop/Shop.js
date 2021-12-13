@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { Routes, Route, Navigate, Link } from "react-router-dom";
+import styled from "styled-components";
+import { useParams } from "react-router-dom";
 import { CategoryNavigation } from "./CategoryNavigation";
 import { ProductList } from "./ProductList";
-import { useParams } from "react-router-dom";
-import styled from "styled-components";
+import { CartSummary } from "./CartSummary.js";
 
 const withRouter = (WrappedComponent) => (props) => {
   const params = useParams();
@@ -13,14 +14,21 @@ const withRouter = (WrappedComponent) => (props) => {
 const Container = styled.div`
   border: 1px solid red;
 `;
-const Title = styled.h2`
-  text-transform: uppercase;
+const Header = styled.div`
   padding: 8px 7px;
   background: #3b3b3b;
-  color: white;
-  h2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  .title {
+    text-transform: uppercase;
     padding: 0;
     margin: 0;
+  }
+  a {
+    color: white;
+    text-decoration: none;
   }
 `;
 const Section = styled.div`
@@ -43,7 +51,12 @@ class Shop extends Component {
   render() {
     return (
       <Container>
-        <Title>sports store</Title>
+        <Header>
+          <h4 className="title">
+            <a href="/">sports store</a>
+          </h4>
+          <CartSummary {...this.props} />
+        </Header>
         <Section>
           <NavWrapper>
             <CategoryNavigation categories={this.props.categories} />
@@ -55,6 +68,7 @@ class Shop extends Component {
                 path={this.props.params.category}
                 element={
                   <ProductList
+                    {...this.props}
                     products={this.filterProducts(this.props.products)}
                   />
                 }
@@ -67,8 +81,15 @@ class Shop extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return nextProps.params.category !== this.props.params.category;
+    console.log("@Shop1-1: ", this.props);
+    console.log("@Shop1-2: ", nextProps);
+    console.log("@Shop1-3: ", nextState);
+    return true;
+    // return nextProps.params.category !== this.props.params.category;
+  }
+  componentDidMount() {
+    console.log("@Shop: ", this.props);
   }
 }
 
-export default withRouter(Shop);
+export const withRouterShop = withRouter(Shop);

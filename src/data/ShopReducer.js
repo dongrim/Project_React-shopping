@@ -5,6 +5,8 @@ const storeData = {
 };
 
 export const ShopReducer = (state = storeData, action) => {
+  console.log("@ShopReducer(state)", state);
+  console.log("@ShopReducer(storeData)", storeData);
   const { type, payload } = action;
   switch (type) {
     case ActionTypes.DATA_LOAD:

@@ -46,6 +46,25 @@ const Price = styled.div`
 `;
 const Description = styled.div`
   padding: 6px 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .text {
+  }
+  .addBtn {
+    text-transform: capitalize;
+    border-radius: 7px;
+    background: tan;
+    color: white;
+    font-size: 0.6em;
+    font-weight: 600;
+    padding: 3px 5px;
+    user-select: none;
+    cursor: pointer;
+    &:hover {
+      filter: brightness(0.9);
+    }
+  }
 `;
 
 export class ProductList extends Component {
@@ -63,7 +82,17 @@ export class ProductList extends Component {
                   <span>{product.price}</span>
                 </Price>
               </Title>
-              <Description>{product.description}</Description>
+              <Description>
+                <div className="text">{product.description}</div>
+                <div
+                  className="addBtn"
+                  onClick={() => {
+                    this.props.addToCart(product);
+                  }}
+                >
+                  add to cart
+                </div>
+              </Description>
             </WrapperProduct>
           );
         })}

@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { ToggleLink } from "../ToggleLink";
 
 const Container = styled.div`
-  /* border: 1px solid blue; */
   padding: 0 5px;
 `;
 const NavWrapper = styled.div`
@@ -34,9 +34,15 @@ export class CategoryNavigation extends Component {
     return (
       <Container>
         <NavWrapper>
-          {this.props.categories.map((category) => {
-            return <LinkBtn to={category.toLowerCase()}>{category}</LinkBtn>;
-          })}
+          <LinkBtn to="/">All</LinkBtn>
+          {this.props.categories &&
+            this.props.categories.map((category, index) => {
+              return (
+                <ToggleLink key={index} to={category.toLowerCase()}>
+                  {category}
+                </ToggleLink>
+              );
+            })}
         </NavWrapper>
       </Container>
     );
