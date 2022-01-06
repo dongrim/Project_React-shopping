@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import { Provider } from "react-redux";
 import {
   BrowserRouter as Router,
-  Route,
   Routes,
+  Route,
   Navigate,
 } from "react-router-dom";
-import { SportsStoreDataStore } from "./data/DataStore";
+import { SportsStoreDataStore } from "./redux/store/DataStore";
 import ShopConnector from "./shop/ShopConnector";
 
 export default class App extends Component {

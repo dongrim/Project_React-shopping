@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { connect } from "react-redux";
-import { loadData } from "../data/ActionCreators";
+import { loadData } from "../redux/actions/ActionCreators.js";
 import {
   addToCart,
   updateCartQuantity,
   removeFromCart,
-} from "../data/CartActionCreators.js";
-import { DataTypes } from "../data/Types";
+} from "../redux/actions/CartActionCreators.js";
+import { DataTypes } from "../redux/constants/Types.js";
 import { withRouterShop as Shop } from "./Shop.js";
 import { CartDetails } from "./CartDetails.js";
 
@@ -27,9 +27,6 @@ class ShopConnector extends Component {
   componentDidMount() {
     this.props.loadData(DataTypes.CATEGORIES);
     this.props.loadData(DataTypes.PRODUCTS);
-    setTimeout(() => {
-      console.log(this.props);
-    }, 1000);
   }
 }
 

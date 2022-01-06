@@ -2,7 +2,18 @@ import React, { Component } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
+  /* border: 3px solid blue; */
+`;
+const Article = styled.div`
   /* border: 1px solid blue; */
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  span {
+    font-size: 1.125rem;
+    font-weight: 600;
+  }
 `;
 const WrapperProduct = styled.div`
   border: 1px solid #6f6f6f;
@@ -69,11 +80,15 @@ const Description = styled.div`
 
 export class ProductList extends Component {
   render() {
-    if (this.props.products === null || this.props.products.length === 0)
-      return <h5>No Products</h5>;
+    if (this.props.products?.length === 0)
+      return (
+        <Article>
+          <span>No Products</span>
+        </Article>
+      );
     return (
       <Container>
-        {this.props.products.map((product) => {
+        {this.props.products?.map((product) => {
           return (
             <WrapperProduct key={product.id}>
               <Title>
@@ -87,7 +102,7 @@ export class ProductList extends Component {
                 <div
                   className="addBtn"
                   onClick={() => {
-                    this.props.addToCart(product);
+                    this.props.addToCart(product, null);
                   }}
                 >
                   add to cart

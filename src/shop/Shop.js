@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Routes, Route, Navigate, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { CategoryNavigation } from "./CategoryNavigation";
@@ -47,7 +47,6 @@ class Shop extends Component {
       (p) => p.category.toLowerCase() === this.props.params.category
     );
   };
-
   render() {
     return (
       <Container>
@@ -63,16 +62,23 @@ class Shop extends Component {
           </NavWrapper>
           <ArticleWrapper>
             <Routes>
-              <Route path="/" element={<div>Show All products</div>} />
               <Route
-                path={this.props.params.category}
+                path="/"
                 element={
-                  <ProductList
-                    {...this.props}
-                    products={this.filterProducts(this.props.products)}
-                  />
+                  <ProductList {...this.props} products={this.props.products} />
                 }
               />
+              {this.props.products && (
+                <Route
+                  path={this.props.params.category}
+                  element={
+                    <ProductList
+                      {...this.props}
+                      products={this.filterProducts(this.props.products)}
+                    />
+                  }
+                />
+              )}
             </Routes>
           </ArticleWrapper>
         </Section>
@@ -81,14 +87,14 @@ class Shop extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    console.log("@Shop1-1: ", this.props);
-    console.log("@Shop1-2: ", nextProps);
-    console.log("@Shop1-3: ", nextState);
+    console.log("(@shouldComponentUpdate>this.props)", this.props);
+    console.log("(nextProps)", nextProps);
+    console.log("(nextState)", nextState);
     return true;
     // return nextProps.params.category !== this.props.params.category;
   }
   componentDidMount() {
-    console.log("@Shop: ", this.props);
+    console.log("(@componentDidMount>this.props)", this.props);
   }
 }
 

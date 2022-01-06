@@ -35,21 +35,21 @@ const WrapperItems = styled.div`
 export class CartDetailsRows extends Component {
   render() {
     if (!this.props.cart) {
-      console.log(this.props);
-      return <div>Loading...</div>;
+      return <div>Cart is empty</div>;
     }
-    return this.props.cart.map((ele) => (
-      <WrapperItems key={ele.product.id}>
+    return this.props.cart.map((item) => (
+      <WrapperItems key={item.product.id}>
         <input type="checkbox" className="chBox" />
-        <div className="product">{ele.product.name}</div>
+        <div className="product">{item.product.name}</div>
         <div className="qty">
           <select
-            defaultValue={ele.quantity}
+            defaultValue={item.quantity}
             onChange={(e) => {
+              // remove item from the cart
               if (e.target.value === "0") {
-                this.props.removeFromCart(ele.product);
+                this.props.removeFromCart(item.product);
               } else {
-                this.props.updateCartQuantity(ele.product, e.target.value);
+                this.props.updateCartQuantity(item.product, e.target.value);
               }
             }}
           >
@@ -66,8 +66,8 @@ export class CartDetailsRows extends Component {
             <option value={null}>10+</option>
           </select>
         </div>
-        <div className="price">${ele.product.price}</div>
-        <div className="subtotal">{ele.quantity * ele.product.price}</div>
+        <div className="price">${item.product.price}</div>
+        <div className="subtotal">{item.quantity * item.product.price}</div>
       </WrapperItems>
     ));
   }

@@ -35,6 +35,10 @@ const Cart = styled.div`
     border-radius: 50%;
     padding-bottom: 19px;
   }
+  .fa-shopping-cart {
+    font-size: 1.2em;
+    color: white;
+  }
 `;
 
 export class CartSummary extends Component {
@@ -44,6 +48,7 @@ export class CartSummary extends Component {
         <Cart>
           <div>Your Cart: (empty)</div>
           <div>🛒</div>
+          {/* <i className="fas fa-shopping-cart"></i> */}
           <div>{this.props.cartItems || 0}</div>
         </Cart>
       </LinkBtn>
