@@ -88,9 +88,9 @@ export class ProductList extends Component {
       );
     return (
       <Container>
-        {this.props.products?.map((product) => {
+        {this.props.products?.map((product, idx) => {
           return (
-            <WrapperProduct key={product.id}>
+            <WrapperProduct key={idx}>
               <Title>
                 <Name>{product.name}</Name>
                 <Price>

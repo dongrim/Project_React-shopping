@@ -1,13 +1,20 @@
 import { ActionTypes } from "../constants/Types";
-import { data as phData } from "../placeholderData.js";
+// import { data as phData } from "../placeholderData.js";
+import { RestDataSource } from "../../data/RestDataSource.js";
+
+const dataSource = new RestDataSource();
 
 export const loadData = (dataType) => {
-  console.log("#action-loadData");
+  console.log("#action-loadData", dataType);
   return {
+    // payload: {
+    //   dataType,
+    //   data: phData[dataType],
+    // },
     type: ActionTypes.DATA_LOAD,
-    payload: {
+    payload: dataSource.GetData(dataType).then((response) => ({
       dataType,
-      data: phData[dataType],
-    },
+      data: response.data[dataType],
+    })),
   };
 };

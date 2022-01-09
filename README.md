@@ -16,10 +16,11 @@
 1. bootstrap
 2. @fortawesome/fontawesome-free
 
-   > ### React
+> ### React & Redux
 
 3. react
 4. react-dom
+5. react-redux
 
 > ### Webpack & Babel
 

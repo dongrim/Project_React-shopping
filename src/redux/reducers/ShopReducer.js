@@ -6,9 +6,6 @@ const initialState = {
 
 export const ShopReducer = (state = initialState, action) => {
   console.log("#ShopReducer");
-  // console.log("@ShopReducer(state): ", state);
-  // console.log("@ShopReducer(action): ", action);
-
   const { type, payload } = action;
 
   switch (type) {

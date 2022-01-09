@@ -2,104 +2,289 @@
   "watersports": [
     {
       "id": 1,
-      "title": "W1",
+      "name": "W1",
+      "category": "Watersports",
       "description": "W1(Watersports)",
-      "price": "3.00"
+      "price": 3.0
     },
     {
       "id": 2,
-      "title": "W2",
+      "name": "W2",
+      "category": "Watersports",
       "description": "W2(Watersports)",
-      "price": "4.00"
+      "price": 4.0
     },
     {
       "id": 3,
-      "title": "W3",
+      "name": "W3",
+      "category": "Watersports",
       "description": "W3(Watersports)",
-      "price": "5.00"
+      "price": 5.0
     },
     {
       "id": 4,
-      "title": "W4",
+      "name": "W4",
+      "category": "Watersports",
       "description": "W4(Watersports)",
-      "price": "6.00"
+      "price": 6.0
     },
     {
       "id": 5,
-      "title": "W5",
+      "name": "W5",
+      "category": "Watersports",
       "description": "W5(Watersports)",
-      "price": "7.00"
+      "price": 7.0
     },
     {
       "id": 6,
-      "title": "W6",
+      "name": "W6",
+      "category": "Watersports",
       "description": "W6(Watersports)",
-      "price": "8.00"
+      "price": 8.0
     },
     {
       "id": 7,
-      "title": "W7",
+      "name": "W7",
+      "category": "Watersports",
       "description": "W7(Watersports)",
-      "price": "9.00"
+      "price": 9.0
     },
     {
       "id": 8,
-      "title": "W8",
+      "name": "W8",
+      "category": "Watersports",
       "description": "W8(Watersports)",
-      "price": "10.00"
+      "price": 10.0
     },
     {
       "id": 9,
-      "title": "W9",
+      "name": "W9",
+      "category": "Watersports",
       "description": "W9(Watersports)",
-      "price": "11.00"
+      "price": 11.0
     },
     {
       "id": 10,
-      "title": "W10",
+      "name": "W10",
+      "category": "Watersports",
       "description": "W10(Watersports)",
-      "price": "12.00"
+      "price": 12.0
     }
   ],
   "soccer": [
-    { "id": 1, "title": "S1", "description": "S1(Soccer)", "price": "3.00" },
-    { "id": 2, "title": "S2", "description": "S2(Soccer)", "price": "4.00" },
-    { "id": 3, "title": "S3", "description": "S3(Soccer)", "price": "5.00" },
-    { "id": 4, "title": "S4", "description": "S4(Soccer)", "price": "6.00" },
-    { "id": 5, "title": "S5", "description": "S5(Soccer)", "price": "7.00" },
-    { "id": 6, "title": "S6", "description": "S6(Soccer)", "price": "8.00" },
-    { "id": 7, "title": "S7", "description": "S7(Soccer)", "price": "9.00" },
-    { "id": 8, "title": "S8", "description": "S8(Soccer)", "price": "10.00" },
-    { "id": 9, "title": "S9", "description": "S9(Soccer)", "price": "11.00" },
-    { "id": 10, "title": "S10", "description": "S10(Soccer)", "price": "12.00" }
-  ],
-  "chess": [
-    { "id": 1, "title": "C1", "description": "C1(Chess)", "price": "3.00" },
-    { "id": 2, "title": "C2", "description": "C2(Chess)", "price": "4.00" },
-    { "id": 3, "title": "C3", "description": "C3(Chess)", "price": "5.00" },
-    { "id": 4, "title": "C4", "description": "C4(Chess)", "price": "6.00" },
-    { "id": 5, "title": "C5", "description": "C5(Chess)", "price": "7.00" },
-    { "id": 6, "title": "C6", "description": "C6(Chess)", "price": "8.00" },
-    { "id": 7, "title": "C7", "description": "C7(Chess)", "price": "9.00" },
-    { "id": 8, "title": "C8", "description": "C8(Chess)", "price": "10.00" },
-    { "id": 9, "title": "C9", "description": "C9(Chess)", "price": "11.00" },
-    { "id": 10, "title": "C10", "description": "C10(Chess)", "price": "12.00" }
-  ],
-  "running": [
-    { "id": 1, "title": "R1", "description": "R1(Running)", "price": "3.00" },
-    { "id": 2, "title": "R2", "description": "R2(Running)", "price": "4.00" },
-    { "id": 3, "title": "R3", "description": "R3(Running)", "price": "5.00" },
-    { "id": 4, "title": "R4", "description": "R4(Running)", "price": "6.00" },
-    { "id": 5, "title": "R5", "description": "R5(Running)", "price": "7.00" },
-    { "id": 6, "title": "R6", "description": "R6(Running)", "price": "8.00" },
-    { "id": 7, "title": "R7", "description": "R7(Running)", "price": "9.00" },
-    { "id": 8, "title": "R8", "description": "R8(Running)", "price": "10.00" },
-    { "id": 9, "title": "R9", "description": "R9(Running)", "price": "11.00" },
+    {
+      "id": 1,
+      "name": "S1",
+      "category": "Soccer",
+      "description": "S1(Soccer)",
+      "price": 3.0
+    },
+    {
+      "id": 2,
+      "name": "S2",
+      "category": "Soccer",
+      "description": "S2(Soccer)",
+      "price": 4.0
+    },
+    {
+      "id": 3,
+      "name": "S3",
+      "category": "Soccer",
+      "description": "S3(Soccer)",
+      "price": 5.0
+    },
+    {
+      "id": 4,
+      "name": "S4",
+      "category": "Soccer",
+      "description": "S4(Soccer)",
+      "price": 6.0
+    },
+    {
+      "id": 5,
+      "name": "S5",
+      "category": "Soccer",
+      "description": "S5(Soccer)",
+      "price": 7.0
+    },
+    {
+      "id": 6,
+      "name": "S6",
+      "category": "Soccer",
+      "description": "S6(Soccer)",
+      "price": 8.0
+    },
+    {
+      "id": 7,
+      "name": "S7",
+      "category": "Soccer",
+      "description": "S7(Soccer)",
+      "price": 9.0
+    },
+    {
+      "id": 8,
+      "name": "S8",
+      "category": "Soccer",
+      "description": "S8(Soccer)",
+      "price": 10.0
+    },
+    {
+      "id": 9,
+      "name": "S9",
+      "category": "Soccer",
+      "description": "S9(Soccer)",
+      "price": 11.0
+    },
     {
       "id": 10,
-      "title": "R10",
+      "name": "S10",
+      "category": "Soccer",
+      "description": "S10(Soccer)",
+      "price": 12.0
+    }
+  ],
+  "chess": [
+    {
+      "id": 1,
+      "name": "C1",
+      "category": "Chess",
+      "description": "C1(Chess)",
+      "price": 3.0
+    },
+    {
+      "id": 2,
+      "name": "C2",
+      "category": "Chess",
+      "description": "C2(Chess)",
+      "price": 4.0
+    },
+    {
+      "id": 3,
+      "name": "C3",
+      "category": "Chess",
+      "description": "C3(Chess)",
+      "price": 5.0
+    },
+    {
+      "id": 4,
+      "name": "C4",
+      "category": "Chess",
+      "description": "C4(Chess)",
+      "price": 6.0
+    },
+    {
+      "id": 5,
+      "name": "C5",
+      "category": "Chess",
+      "description": "C5(Chess)",
+      "price": 7.0
+    },
+    {
+      "id": 6,
+      "name": "C6",
+      "category": "Chess",
+      "description": "C6(Chess)",
+      "price": 8.0
+    },
+    {
+      "id": 7,
+      "name": "C7",
+      "category": "Chess",
+      "description": "C7(Chess)",
+      "price": 9.0
+    },
+    {
+      "id": 8,
+      "name": "C8",
+      "category": "Chess",
+      "description": "C8(Chess)",
+      "price": 10.0
+    },
+    {
+      "id": 9,
+      "name": "C9",
+      "category": "Chess",
+      "description": "C9(Chess)",
+      "price": 11.0
+    },
+    {
+      "id": 10,
+      "name": "C10",
+      "category": "Chess",
+      "description": "C10(Chess)",
+      "price": 12.0
+    }
+  ],
+  "running": [
+    {
+      "id": 1,
+      "name": "R1",
+      "category": "Running",
+      "description": "R1(Running)",
+      "price": 3.0
+    },
+    {
+      "id": 2,
+      "name": "R2",
+      "category": "Running",
+      "description": "R2(Running)",
+      "price": 4.0
+    },
+    {
+      "id": 3,
+      "name": "R3",
+      "category": "Running",
+      "description": "R3(Running)",
+      "price": 5.0
+    },
+    {
+      "id": 4,
+      "name": "R4",
+      "category": "Running",
+      "description": "R4(Running)",
+      "price": 6.0
+    },
+    {
+      "id": 5,
+      "name": "R5",
+      "category": "Running",
+      "description": "R5(Running)",
+      "price": 7.0
+    },
+    {
+      "id": 6,
+      "name": "R6",
+      "category": "Running",
+      "description": "R6(Running)",
+      "price": 8.0
+    },
+    {
+      "id": 7,
+      "name": "R7",
+      "category": "Running",
+      "description": "R7(Running)",
+      "price": 9.0
+    },
+    {
+      "id": 8,
+      "name": "R8",
+      "category": "Running",
+      "description": "R8(Running)",
+      "price": 10.0
+    },
+    {
+      "id": 9,
+      "name": "R9",
+      "category": "Running",
+      "description": "R9(Running)",
+      "price": 11.0
+    },
+    {
+      "id": 10,
+      "name": "R10",
+      "category": "Running",
       "description": "R10(Running)",
-      "price": "12.00"
+      "price": 12.0
     }
   ]
 }

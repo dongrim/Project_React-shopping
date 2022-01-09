@@ -3,8 +3,9 @@ import { ActionTypes } from "../constants/Types";
 export const CartReducer = (storeData, action) => {
   console.log("#CartReducer");
   const { type, payload } = action;
-  const prod = payload.product;
-  const qty = Number(payload.quantity);
+  // 'payload' && addded due to applyMiddleware
+  const prod = payload && payload.product;
+  const qty = payload && Number(payload.quantity);
   let newStore = { cart: [], cartItems: 0, cartPrice: 0, ...storeData };
   let existing = newStore.cart.find((item) => item.product.id === prod.id);
 
@@ -12,7 +13,7 @@ export const CartReducer = (storeData, action) => {
     const totalPrice = newStore.cart.map((item) => {
       return item.product.price * item.quantity;
     });
-    return totalPrice.reduce((acc, curr) => acc + curr);
+    return totalPrice.reduce((acc, curr) => acc + curr); // error due to no initial value
   };
   const getCartQuantity = () => {
     const totalQty = newStore.cart.map((item) => {

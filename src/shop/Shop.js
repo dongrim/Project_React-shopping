@@ -44,7 +44,8 @@ const ArticleWrapper = styled.div`
 class Shop extends Component {
   filterProducts = (products) => {
     return products.filter(
-      (p) => p.category.toLowerCase() === this.props.params.category
+      (product) =>
+        product.category?.toLowerCase() === this.props.params.category
     );
   };
   render() {
