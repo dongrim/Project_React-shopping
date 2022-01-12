@@ -2,7 +2,8 @@ import axios from "axios";
 import { RestUrls } from "./Urls.js";
 
 export class RestDataSource {
-  GetData = (dataType) => this.SendRequest("get", RestUrls[dataType]);
+  GetData = (dataType, params) =>
+    this.SendRequest("get", RestUrls[dataType], params);
 
-  SendRequest = (method, url) => axios.request({ method, url });
+  SendRequest = (method, url, params) => axios.request({ method, url, params });
 }

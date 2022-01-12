@@ -1,13 +1,17 @@
 import React, { Component } from "react";
 import { Routes, Route } from "react-router-dom";
 import styled from "styled-components";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { CategoryNavigation } from "./CategoryNavigation";
 import { ProductList } from "./ProductList";
 import { CartSummary } from "./CartSummary.js";
 
 const withRouter = (WrappedComponent) => (props) => {
   const params = useParams();
+  // console.warn("params", params);
+  // const location = useLocation();
+  // const navigate = useNavigate();
+  // navigate(`/new/route`);
   return <WrappedComponent {...props} params={params} />;
 };
 
@@ -64,7 +68,7 @@ class Shop extends Component {
           <ArticleWrapper>
             <Routes>
               <Route
-                path="/"
+                path="all/*"
                 element={
                   <ProductList {...this.props} products={this.props.products} />
                 }
@@ -88,14 +92,14 @@ class Shop extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    console.log("(@shouldComponentUpdate>this.props)", this.props);
-    console.log("(nextProps)", nextProps);
-    console.log("(nextState)", nextState);
+    // console.log("(@shouldComponentUpdate)", this.props);
+    // console.log("(nextProps)", nextProps);
+    // console.log("(nextState)", nextState);
     return true;
     // return nextProps.params.category !== this.props.params.category;
   }
   componentDidMount() {
-    console.log("(@componentDidMount>this.props)", this.props);
+    // console.log("(@componentDidMount)", this.props);
   }
 }
 

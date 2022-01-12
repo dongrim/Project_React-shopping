@@ -17,7 +17,7 @@ export class CategoryNavigation extends Component {
     return (
       <Container>
         <NavWrapper>
-          <ToggleLink to="/" exact={true}>
+          <ToggleLink to="all" exact={false}>
             All
           </ToggleLink>
           {this.props.categories &&

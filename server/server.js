@@ -2,42 +2,34 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 8010;
 const cors = require("cors");
-const items = require("./db/items.json");
-// const foo = require("./db/faker.js");
-const chance = require("chance").Chance(50);
-console.log(chance.random());
-console.log(chance.string());
+const { products, categories } = require("./db/chance.js");
 
 app.use(cors());
 
+// pagenamtion (p.209)
+// http://localhost:8010/api/products?category_like=watersports&_page=2&_limit=3&_sort=name
+// http://localhost:8010/api/products?_page=2&_limit=3
+
 app.get("/api/products", (req, res) => {
-  const allProducts = [];
-  for (product in items) {
-    allProducts.push(...items[product]);
-  }
+  console.log("req.params: ", req.params);
+  console.log("originalUrl: ", req.originalUrl);
+  console.log("req.query: ", req.query);
   const response = {
     status: 200,
-    products: allProducts,
+    products,
   };
   res.send(response);
 });
+
 app.get("/api/categories", (req, res) => {
-  const categories = [];
-  for (cat in items) {
-    categories.push(cat);
-  }
   const response = {
     status: 200,
     categories,
   };
   res.send(response);
 });
-app.get("/api/products/:id", (req, res) => {
-  const response = {
-    response: 200,
-    products: items[req.params.id],
-  };
-  res.send(response);
-});
+// app.get("/api/:id", (req, res) => {
+// app.get("/api/products", (req, res) => {
+// });
 
 app.listen(port, () => console.log("Server is running on PORT: %d", port));

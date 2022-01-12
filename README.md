@@ -18,9 +18,14 @@
 
 > ### React & Redux
 
-3. react
-4. react-dom
-5. react-redux
+1. react
+2. react-dom
+3. react-redux
+
+> ### dependency
+
+1. applyMiddleware (redux)
+2. chancejs (sub. faker)
 
 > ### Webpack & Babel
 

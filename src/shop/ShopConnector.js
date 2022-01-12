@@ -10,17 +10,38 @@ import {
 import { DataTypes } from "../redux/constants/Types.js";
 import { withRouterShop as Shop } from "./Shop.js";
 import { CartDetails } from "./CartDetails.js";
+import { withRouterDataGetter as DataGetter } from "../data/DataGetter.js";
+
+const mapStateToProps = (dataStore) => ({ ...dataStore });
+
+const mapDispatchToProps = {
+  loadData,
+  addToCart,
+  updateCartQuantity,
+  removeFromCart,
+};
 
 class ShopConnector extends Component {
   render() {
     return (
-      <Routes>
-        <Route path="products/*" element={<Shop {...this.props} />}>
-          <Route path=":category" element={<Shop />} />
-        </Route>
-        <Route path="/" element={<Navigate replace to="/shop/products" />} />
-        <Route path="cart" element={<CartDetails {...this.props} />} />
-      </Routes>
+      <>
+        <Routes>
+          <Route
+            path="products/*"
+            element={
+              <DataGetter {...this.props}>
+                <Shop {...this.props} />
+              </DataGetter>
+            }
+          >
+            <Route path=":category" />
+            <Route path=":category/:page" />
+          </Route>
+          <Route path="/" element={<Navigate to="/shop/products" replace />} />
+          <Route path="cart" element={<CartDetails {...this.props} />} />
+        </Routes>
+        {/* <Navigate to="/shop/jojo" replace /> */}
+      </>
     );
   }
 
@@ -29,13 +50,5 @@ class ShopConnector extends Component {
     this.props.loadData(DataTypes.PRODUCTS);
   }
 }
-
-const mapStateToProps = (dataStore) => ({ ...dataStore });
-const mapDispatchToProps = {
-  loadData,
-  addToCart,
-  updateCartQuantity,
-  removeFromCart,
-};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ShopConnector);

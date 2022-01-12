@@ -1,31 +1,14 @@
-// export const DataTypes = {
-//   PRODUCTS: "products",
-//   CATEGORIES: "categories",
-// };
+export const DataTypes = {
+  PRODUCTS: "products",
+  CATEGORIES: "categories",
+};
 
-// export const ActionTypes = {
-//   DATA_LOAD: "data_load",
-//   CART_ADD: "cart_add",
-//   CART_UPDATE: "cart_update",
-//   CART_REMOVE: "cart_delete",
-//   CART_CLEAR: "cart_clear",
-// };
-
-export const DataTypes = (() => {
-  console.log("#actionType-(prod,cate)");
-  return {
-    PRODUCTS: "products",
-    CATEGORIES: "categories",
-  };
-})();
-
-export const ActionTypes = (() => {
-  console.log("#actionType-(load,add)");
-  return {
-    DATA_LOAD: "data_load",
-    CART_ADD: "cart_add",
-    CART_UPDATE: "cart_update",
-    CART_REMOVE: "cart_delete",
-    CART_CLEAR: "cart_clear",
-  };
-})();
+export const ActionTypes = {
+  DATA_LOAD: "data_load",
+  DATA_SET_SORT_PROPERTY: "data_set_sort",
+  DATA_SET_PAGESIZE: "data_set_pagesize",
+  CART_ADD: "cart_add",
+  CART_UPDATE: "cart_update",
+  CART_REMOVE: "cart_delete",
+  CART_CLEAR: "cart_clear",
+};
