@@ -1,22 +1,24 @@
 import React, { Component } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import styled from "styled-components";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import { CategoryNavigation } from "./CategoryNavigation";
 import { ProductList } from "./ProductList";
-import { CartSummary } from "./CartSummary.js";
+import { CartSummary } from "./CartSummary";
+import { ProductPageConnector } from "./ProductPageConnector";
+import { PaginationControls } from "../PaginationControls";
 
 const withRouter = (WrappedComponent) => (props) => {
   const params = useParams();
-  // console.warn("params", params);
-  // const location = useLocation();
+  const location = useLocation();
   // const navigate = useNavigate();
-  // navigate(`/new/route`);
-  return <WrappedComponent {...props} params={params} />;
+  return (
+    <WrappedComponent {...props} params={params} pathname={location.pathname} />
+  );
 };
 
 const Container = styled.div`
-  border: 1px solid red;
+  border: 3px solid orange;
 `;
 const Header = styled.div`
   padding: 8px 7px;
@@ -45,6 +47,8 @@ const ArticleWrapper = styled.div`
   flex-basis: 75%;
 `;
 
+const ProductPages = ProductPageConnector(PaginationControls);
+
 class Shop extends Component {
   filterProducts = (products) => {
     return products.filter(
@@ -53,6 +57,7 @@ class Shop extends Component {
     );
   };
   render() {
+    console.log("Shop => ", this.props);
     return (
       <Container>
         <Header>
@@ -66,6 +71,7 @@ class Shop extends Component {
             <CategoryNavigation categories={this.props.categories} />
           </NavWrapper>
           <ArticleWrapper>
+            <ProductPages />
             <Routes>
               <Route
                 path="all/*"
@@ -75,7 +81,7 @@ class Shop extends Component {
               />
               {this.props.products && (
                 <Route
-                  path={this.props.params.category}
+                  path={`${this.props.params.category}/*`}
                   element={
                     <ProductList
                       {...this.props}
@@ -84,22 +90,20 @@ class Shop extends Component {
                   }
                 />
               )}
+              {/* first page set to 1 */}
+              <Route
+                path={this.props.params.category}
+                element={
+                  <Navigate
+                    to={`/shop/products/${this.props.params.category}/1`}
+                  />
+                }
+              />
             </Routes>
           </ArticleWrapper>
         </Section>
       </Container>
     );
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    // console.log("(@shouldComponentUpdate)", this.props);
-    // console.log("(nextProps)", nextProps);
-    // console.log("(nextState)", nextState);
-    return true;
-    // return nextProps.params.category !== this.props.params.category;
-  }
-  componentDidMount() {
-    // console.log("(@componentDidMount)", this.props);
   }
 }
 

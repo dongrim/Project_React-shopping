@@ -1,44 +1,78 @@
 # React Shopping
 
-## References
+## 1. References
 
-1. Book - 리액트16 (Adam Freeman)
+- 리액트16 (Adam Freeman)
 
-## Getting Started
+## 2. Getting Started
 
 > ### Basic
 
-1. npm init
-2. git init
+- npm init
+- git init
 
 > ### CSS
 
-1. bootstrap
-2. @fortawesome/fontawesome-free
+- bootstrap
+- @fortawesome/fontawesome-free
 
 > ### React & Redux
 
-1. react
-2. react-dom
-3. react-redux
+- react
+- react-dom
+- react-redux
 
 > ### dependency
 
-1. applyMiddleware (redux)
-2. chancejs (sub. faker)
+- applyMiddleware (redux)
+- chancejs (sub. faker)
 
 > ### Webpack & Babel
 
-1. webpack
-2. webpack-cli
-3. webpack-dev-server
-4. babel-loader
-5. @babel/core
-6. @babel/preset-env
-7. @babel/preset-react
-8. style-loader
-9. css-loader
+- webpack
+- webpack-cli
+- webpack-dev-server
+- babel-loader
+- @babel/core
+- @babel/preset-env
+- @babel/preset-react
+- style-loader
+- css-loader
 
 > ### ESLint & Prettier
->
+
+- blank
+
 > ### Husky & lint-staged
+
+- blank
+
+> ### etc.
+
+- react-intl
+
+## 3. Server
+
+```js
+1)
+response.setHeader("Content-Type", "text/html");
+response.setHeader("Content-Length", Buffer.byteLength(body));
+response.setHeader("Set-Cookie", ["type=ninja", "language=javascript"]);
+response.getHeader("set-cookie");
+```
+
+```js
+2)
+response.set("X-Total-Count", 503);
+response.cookie("name", "Bob");
+request.cookies["name"];
+```
+
+```js
+3)
+response.header("Access-Control-Expose-Headers", "X-Total-Count");
+Access-Control-Allow-Origin
+Access-Control-Allow-Credentials
+Access-Control-Allow-Methods
+Access-Control-Allow-Headers
+```

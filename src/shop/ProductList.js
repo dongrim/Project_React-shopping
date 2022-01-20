@@ -5,8 +5,8 @@ const Container = styled.div`
   /* border: 3px solid blue; */
 `;
 const Article = styled.div`
-  /* border: 1px solid blue; */
-  height: 100%;
+  border: 1px solid blue;
+  height: 60vh; // no products height
   display: flex;
   align-items: center;
   justify-content: center;

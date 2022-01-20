@@ -7,9 +7,6 @@ import { asyncActions } from "../../data/AsyncMiddleware";
 
 const logger = createLogger({});
 
-// export const SportsStoreDataStore = createStore(
-//   CommonReducer(ShopReducer, CartReducer)
-// );
 export const SportsStoreDataStore = (() => {
   console.log("#createStore");
   return createStore(

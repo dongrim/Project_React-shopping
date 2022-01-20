@@ -4,17 +4,8 @@ import { RestDataSource } from "../../data/RestDataSource.js";
 
 const dataSource = new RestDataSource();
 
-// params = "?category_like=watersports&_page=2&_limit=3&_sort=name"
-export const loadData = (
-  dataType,
-  // params
-  params = {
-    category_like: "watersports",
-    _page: 2,
-    _limit: 3,
-    _sort: "name",
-  }
-) => {
+// params: ?category_like=watersports&_page=2&_limit=3&_sort=name
+export const loadData = (dataType, params) => {
   console.log("#action-loadData", "=>", dataType, params);
   return {
     // payload: {
@@ -22,17 +13,11 @@ export const loadData = (
     //   data: phData[dataType],
     // },
     type: ActionTypes.DATA_LOAD,
-    // payload: dataSource.GetData(dataType).then((response) => ({
-    //   dataType,
-    //   data: response.data[dataType],
-    // })),
     payload: dataSource.GetData(dataType, params).then((response) => {
-      response.headers["x-total-count5885"];
       return {
         dataType,
         data: response.data[dataType],
-        // total: Number(response.headers["x-total-count"]),
-        total: "x-total-count4885",
+        total: Number(response.headers["x-total-count"]),
         params: params,
       };
     }),
