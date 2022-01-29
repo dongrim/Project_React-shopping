@@ -1,41 +1,15 @@
-import React, { Component } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
-import styled from "styled-components";
-import { useParams, useLocation, useNavigate } from "react-router-dom";
-import { CategoryNavigation } from "./CategoryNavigation";
-import { ProductList } from "./ProductList";
-import { CartSummary } from "./CartSummary";
-import { ProductPageConnector } from "./ProductPageConnector";
-import { PaginationControls } from "../PaginationControls";
-
-const withRouter = (WrappedComponent) => (props) => {
-  const params = useParams();
-  const location = useLocation();
-  // const navigate = useNavigate();
-  return (
-    <WrappedComponent {...props} params={params} pathname={location.pathname} />
-  );
-};
+import React, { Component } from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import styled from 'styled-components';
+import { useParams, useLocation } from 'react-router-dom';
+import { CategoryNavigation } from './CategoryNavigation';
+import { ProductList } from './ProductList';
+import { ProductPageConnector } from './ProductPageConnector';
+import { PaginationControls } from '../PaginationControls';
+import { HeaderComponent } from '../layout';
 
 const Container = styled.div`
-  border: 3px solid orange;
-`;
-const Header = styled.div`
-  padding: 8px 7px;
-  background: #3b3b3b;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-  .title {
-    text-transform: uppercase;
-    padding: 0;
-    margin: 0;
-  }
-  a {
-    color: white;
-    text-decoration: none;
-  }
+  // border: 3px solid orange;
 `;
 const Section = styled.div`
   display: flex;
@@ -47,25 +21,27 @@ const ArticleWrapper = styled.div`
   flex-basis: 75%;
 `;
 
+const withRouter = WrappedComponent => props => {
+  const params = useParams();
+  const location = useLocation();
+  return (
+    <WrappedComponent {...props} params={params} pathname={location.pathname} />
+  );
+};
+
+// #Connect redux of pagination to main component; Shop.js
 const ProductPages = ProductPageConnector(PaginationControls);
 
 class Shop extends Component {
-  filterProducts = (products) => {
+  filterProducts = products => {
     return products.filter(
-      (product) =>
-        product.category?.toLowerCase() === this.props.params.category
+      product => product.category?.toLowerCase() === this.props.params.category
     );
   };
   render() {
-    console.log("Shop => ", this.props);
     return (
       <Container>
-        <Header>
-          <h4 className="title">
-            <a href="/">sports store</a>
-          </h4>
-          <CartSummary {...this.props} />
-        </Header>
+        <HeaderComponent {...this.props} />
         <Section>
           <NavWrapper>
             <CategoryNavigation categories={this.props.categories} />
@@ -74,7 +50,7 @@ class Shop extends Component {
             <ProductPages />
             <Routes>
               <Route
-                path="all/*"
+                path='all/*'
                 element={
                   <ProductList {...this.props} products={this.props.products} />
                 }
@@ -90,7 +66,6 @@ class Shop extends Component {
                   }
                 />
               )}
-              {/* first page set to 1 */}
               <Route
                 path={this.props.params.category}
                 element={

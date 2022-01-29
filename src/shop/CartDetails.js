@@ -1,19 +1,20 @@
-import React, { Component } from "react";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
-import { CartDetailsRows } from "./CartDetailsRows.js";
+import React, { Component } from 'react';
+import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
+import { CartDetailsRows } from './CartDetailsRows.js';
+import { HeaderComponent } from '../layout';
 
 const Container = styled.div`
   background: whitesmoke;
-  width: 800px;
-  height: 1200px;
-  margin: 50px auto;
 `;
 const Header = styled.h2`
   text-transform: capitalize;
   margin-bottom: 30px;
 `;
-const Section = styled.div`
+const SectionWarpper = styled.div`
+  margin: 50px;
+`;
+const Article = styled.div`
   text-align: center;
 `;
 const HeaderSection = styled.div`
@@ -67,7 +68,9 @@ const Footer = styled.div`
   justify-content: center;
   margin-top: 30px;
 `;
-const LinkBtn = styled(Link)`
+const Button = styled.button`
+  border: none;
+  outline: 1px solid black;
   margin-right: 15px;
   background: #5f5f5f;
   color: white;
@@ -75,37 +78,51 @@ const LinkBtn = styled(Link)`
   padding: 3px 10px 4px;
   user-select: none;
   cursor: pointer;
-  text-decoration: none;
+  text-transform: capitalize;
   &:hover {
     color: white;
     background: gray;
   }
 `;
 
-export class CartDetails extends Component {
+const withRouter = Component => props => {
+  const navigate = useNavigate();
+  return <Component {...props} navigate={navigate} />;
+};
+
+class CartDetails extends Component {
   render() {
     return (
       <Container>
-        <Header>shopping cart</Header>
-        <Section>
-          <HeaderSection>
-            <input type="checkbox" className="chBox" />
-            <div className="product">product</div>
-            <div className="qty">qty</div>
-            <div className="price">price</div>
-            <div className="subtotal">subtotal</div>
-          </HeaderSection>
-          <CartDetailsRows {...this.props} />
-          <Total>
-            <div>Total: </div>
-            <div>${this.props.cartPrice}</div>
-          </Total>
-        </Section>
-        <Footer>
-          <LinkBtn to="/shop">continue shopping</LinkBtn>
-          <LinkBtn to="/shop/checkout">checkout</LinkBtn>
-        </Footer>
+        <HeaderComponent />
+        <SectionWarpper>
+          <Header>shopping cart</Header>
+          <Article>
+            <HeaderSection>
+              <input type='checkbox' className='chBox' />
+              <div className='product'>product</div>
+              <div className='qty'>qty</div>
+              <div className='price'>price</div>
+              <div className='subtotal'>subtotal</div>
+            </HeaderSection>
+            <CartDetailsRows {...this.props} />
+            <Total>
+              <div>Total: </div>
+              <div>${this.props.cartPrice}</div>
+            </Total>
+          </Article>
+          <Footer>
+            <Button onClick={() => this.props.navigate('/shop')}>
+              continue shopping
+            </Button>
+            <Button onClick={() => this.props.navigate('/shop/checkout')}>
+              checkout
+            </Button>
+          </Footer>
+        </SectionWarpper>
       </Container>
     );
   }
 }
+
+export const withRouterCartDetails = withRouter(CartDetails);

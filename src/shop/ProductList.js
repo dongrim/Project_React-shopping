@@ -1,9 +1,7 @@
-import React, { Component } from "react";
-import styled from "styled-components";
+import React, { Component } from 'react';
+import styled from 'styled-components';
 
-const Container = styled.div`
-  /* border: 3px solid blue; */
-`;
+const Container = styled.div``;
 const Article = styled.div`
   border: 1px solid blue;
   height: 60vh; // no products height
@@ -48,10 +46,10 @@ const Price = styled.div`
     color: white;
     height: 75%;
     &::before {
-      content: "$";
+      content: '$';
     }
     &::after {
-      content: ".00";
+      content: '.00';
     }
   }
 `;
@@ -86,31 +84,37 @@ export class ProductList extends Component {
           <span>No Products</span>
         </Article>
       );
+    console.log('pp#', this.props);
+    // 10, 25, 50, 100
+    // 100 * 6 , 500
+
     return (
       <Container>
-        {this.props.products?.map((product, idx) => {
-          return (
-            <WrapperProduct key={idx}>
-              <Title>
-                <Name>{product.name}</Name>
-                <Price>
-                  <span>{product.price}</span>
-                </Price>
-              </Title>
-              <Description>
-                <div className="text">{product.description}</div>
-                <div
-                  className="addBtn"
-                  onClick={() => {
-                    this.props.addToCart(product, null);
-                  }}
-                >
-                  add to cart
-                </div>
-              </Description>
-            </WrapperProduct>
-          );
-        })}
+        {this.props.products
+          ?.slice(0, this.props.products_params?._limit)
+          .map((product, idx) => {
+            return (
+              <WrapperProduct key={idx}>
+                <Title>
+                  <Name>{product.name}</Name>
+                  <Price>
+                    <span>{product.price}</span>
+                  </Price>
+                </Title>
+                <Description>
+                  <div className='text'>{product.description}</div>
+                  <div
+                    className='addBtn'
+                    onClick={() => {
+                      this.props.addToCart(product, null);
+                    }}
+                  >
+                    add to cart
+                  </div>
+                </Description>
+              </WrapperProduct>
+            );
+          })}
       </Container>
     );
   }

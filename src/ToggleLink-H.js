@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { Link, useParams } from "react-router-dom";
-import styled from "styled-components";
+import React, { Component } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import styled from 'styled-components';
 
 const Container = styled.div`
   width: 100%;
@@ -17,14 +17,14 @@ const LinkBtn = styled(Link)`
   color: white;
   width: 100%;
   margin-bottom: 6px;
-  ${({ selected }) => selected && "background: skyblue"};
+  ${({ selected }) => selected && 'background: skyblue'};
   &:hover {
     color: white;
     font-weight: 700;
   }
 `;
 
-const withRouter = (WrappedComponent) => (props) => {
+const withRouter = WrappedComponent => props => {
   const params = useParams();
   return <WrappedComponent {...props} params={params} />;
 };
@@ -33,10 +33,9 @@ class ToggleLink extends Component {
   render() {
     const currentURL =
       this.props.params.category === undefined
-        ? "/"
+        ? '/'
         : this.props.params.category;
     const isActive = this.props.to === currentURL;
-
     return (
       <Container>
         <LinkBtn to={this.props.to} selected={isActive}>

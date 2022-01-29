@@ -1,21 +1,23 @@
-import { ActionTypes } from "../constants/Types.js";
+import { ActionTypes } from '../constants/Types.js';
 
 const initialState = {
   // count: 0,
 };
 
 export const ShopReducer = (state = initialState, action) => {
-  console.log("#ShopReducer", "=>", state, action);
+  console.log('#ShopReducer', '=>', state, action);
   const { type, payload } = action;
 
   switch (type) {
     case ActionTypes.DATA_LOAD:
-      return {
-        ...state,
-        [payload.dataType]: payload.data,
-        [`${payload.dataType}_total`]: payload.total,
-        [`${payload.dataType}_params`]: payload.params,
-      };
+      return payload.dataType === 'products'
+        ? {
+            ...state,
+            [payload.dataType]: payload.data,
+            [`${payload.dataType}_total`]: payload.total,
+            [`${payload.dataType}_params`]: payload.params,
+          }
+        : { ...state, [payload.dataType]: payload.data };
     case ActionTypes.DATA_SET_PAGESIZE:
       return {
         ...state,
