@@ -34,9 +34,11 @@ const ProductPages = ProductPageConnector(PaginationControls);
 
 class Shop extends Component {
   filterProducts = products => {
-    return products.filter(
+    const filteredProducts = products?.filter(
       product => product.category?.toLowerCase() === this.props.params.category
     );
+    const len = filteredProducts?.length;
+    return { filteredProducts, len };
   };
   render() {
     return (
@@ -47,7 +49,9 @@ class Shop extends Component {
             <CategoryNavigation categories={this.props.categories} />
           </NavWrapper>
           <ArticleWrapper>
-            <ProductPages />
+            <ProductPages
+              lengthOfFiltered={this.filterProducts(this.props.products).len}
+            />
             <Routes>
               <Route
                 path='all/*'
@@ -57,11 +61,15 @@ class Shop extends Component {
               />
               {this.props.products && (
                 <Route
+                  // path='soccer/*'
                   path={`${this.props.params.category}/*`}
                   element={
                     <ProductList
                       {...this.props}
-                      products={this.filterProducts(this.props.products)}
+                      products={
+                        this.filterProducts(this.props.products)
+                          .filteredProducts
+                      }
                     />
                   }
                 />

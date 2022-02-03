@@ -11,7 +11,6 @@ const withRouter = WrappedComponent => props => {
 
 class DataGetter extends Component {
   render() {
-    console.warn('DataGetter => ', this.props);
     return <>{this.props.children}</>;
   }
 

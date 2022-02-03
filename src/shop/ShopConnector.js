@@ -41,7 +41,7 @@ class ShopConnector extends Component {
         <Route path='/' element={<Navigate to='/shop/products/all' />} />
         <Route path='cart' element={<CartDetails {...this.props} />} />
         <Route path='checkout' element={<Checkout {...this.props} />} />
-        <Route path='Thanks' element={<Thanks />} />
+        <Route path='thanks' element={<Thanks />} />
       </Routes>
     );
   }

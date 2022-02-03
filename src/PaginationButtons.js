@@ -51,6 +51,8 @@ const Li = styled.li`
 
 export class PaginationButtons extends Component {
   getPageNumbers = () => {
+    // console.log(this.props);
+    // # issue to solve min and max value of pagination
     const n = this.props.currentPage;
     if (this.props.currentPage < 5) {
       return [1, 2, 3, 4, 5];

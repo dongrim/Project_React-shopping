@@ -84,19 +84,24 @@ export class ProductList extends Component {
           <span>No Products</span>
         </Article>
       );
-    console.log('pp#', this.props);
-    // 10, 25, 50, 100
-    // 100 * 6 , 500
+
+    console.log('@@count', this.props.products?.length);
+
+    const n = this.props.products_params?._page;
+    const t = this.props.products_params?._limit;
 
     return (
       <Container>
         {this.props.products
-          ?.slice(0, this.props.products_params?._limit)
+          // ?.slice(0, this.props.products_params?._limit)
+          ?.slice(t * (n - 1), t * n)
           .map((product, idx) => {
             return (
               <WrapperProduct key={idx}>
                 <Title>
-                  <Name>{product.name}</Name>
+                  <Name>
+                    {idx + 1}.{product.name}
+                  </Name>
                   <Price>
                     <span>{product.price}</span>
                   </Price>
