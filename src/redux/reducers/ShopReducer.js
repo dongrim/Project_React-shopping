@@ -1,16 +1,19 @@
-import { ActionTypes } from '../constants/Types.js';
+import { ActionTypes, DataTypes } from "../constants/Types.js";
 
 const initialState = {
   // count: 0,
 };
 
 export const ShopReducer = (state = initialState, action) => {
-  console.log('#ShopReducer', '=>', state, action);
+  console.group("%c @ShopReducer ", "background: blue; color: yellow");
+  console.log("state => ", state);
+  console.log("action => ", action);
+  console.groupEnd();
   const { type, payload } = action;
 
   switch (type) {
     case ActionTypes.DATA_LOAD:
-      return payload.dataType === 'products'
+      return payload.dataType === "products"
         ? {
             ...state,
             [payload.dataType]: payload.data,
@@ -28,6 +31,13 @@ export const ShopReducer = (state = initialState, action) => {
         ...state,
         sortKey: payload,
       };
+    case ActionTypes.DATA_STORE:
+      // if (payload.dataType === DataTypes.ORDERS) {}
+      return {
+        ...state,
+        order: payload.data,
+      };
+    // break;
     default:
       return state || {};
   }

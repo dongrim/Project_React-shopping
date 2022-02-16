@@ -22,29 +22,3 @@ export function asyncActions() {
     };
   };
 }
-
-/*
-function dispatch(action) {
-  if (!isPlainObject(action)) {
-    throw new Error(process.env.NODE_ENV === "production" ? formatProdErrorMessage(7) : "Actions must be plain objects. Instead, the actual type was: '" + kindOf(action) + "'. You may need to add middleware to your store setup to handle dispatching other values, such as 'redux-thunk' to handle dispatching functions. See https://redux.js.org/tutorials/fundamentals/part-4-store#middleware and https://redux.js.org/tutorials/fundamentals/part-6-async-logic#using-the-redux-thunk-middleware for examples.");
-  }
-  if (typeof action.type === 'undefined') {
-    throw new Error(process.env.NODE_ENV === "production" ? formatProdErrorMessage(8) : 'Actions may not have an undefined "type" property. You may have misspelled an action type string constant.');
-  }
-  if (isDispatching) {
-    throw new Error(process.env.NODE_ENV === "production" ? formatProdErrorMessage(9) : 'Reducers may not dispatch actions.');
-  }
-  try {
-    isDispatching = true;
-    currentState = currentReducer(currentState, action);
-  } finally {
-    isDispatching = false;
-  }
-  var listeners = currentListeners = nextListeners;
-  for (var i = 0; i < listeners.length; i++) {
-    var listener = listeners[i];
-    listener();
-  }
-  return action;
-}
-*/

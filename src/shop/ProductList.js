@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
+import React, { Component } from "react";
+import styled from "styled-components";
 
 const Container = styled.div``;
 const Article = styled.div`
@@ -46,10 +46,10 @@ const Price = styled.div`
     color: white;
     height: 75%;
     &::before {
-      content: '$';
+      content: "$";
     }
     &::after {
-      content: '.00';
+      content: ".00";
     }
   }
 `;
@@ -85,8 +85,6 @@ export class ProductList extends Component {
         </Article>
       );
 
-    console.log('@@count', this.props.products?.length);
-
     const n = this.props.products_params?._page;
     const t = this.props.products_params?._limit;
 
@@ -107,9 +105,9 @@ export class ProductList extends Component {
                   </Price>
                 </Title>
                 <Description>
-                  <div className='text'>{product.description}</div>
+                  <div className="text">{product.description}</div>
                   <div
-                    className='addBtn'
+                    className="addBtn"
                     onClick={() => {
                       this.props.addToCart(product, null);
                     }}

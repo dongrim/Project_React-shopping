@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
-import styled from 'styled-components';
-import { useParams, useLocation } from 'react-router-dom';
-import { CategoryNavigation } from './CategoryNavigation';
-import { ProductList } from './ProductList';
-import { ProductPageConnector } from './ProductPageConnector';
-import { PaginationControls } from '../PaginationControls';
-import { HeaderComponent } from '../layout';
+import React, { Component } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+import styled from "styled-components";
+import { useParams, useLocation } from "react-router-dom";
+import { CategoryNavigation } from "./CategoryNavigation";
+import { ProductList } from "./ProductList";
+import { ProductPageConnector } from "./ProductPageConnector";
+import { PaginationControls } from "../PaginationControls";
+import { HeaderComponent } from "../layout";
 
 const Container = styled.div`
   // border: 3px solid orange;
@@ -21,7 +21,7 @@ const ArticleWrapper = styled.div`
   flex-basis: 75%;
 `;
 
-const withRouter = WrappedComponent => props => {
+const withRouter = (WrappedComponent) => (props) => {
   const params = useParams();
   const location = useLocation();
   return (
@@ -33,14 +33,16 @@ const withRouter = WrappedComponent => props => {
 const ProductPages = ProductPageConnector(PaginationControls);
 
 class Shop extends Component {
-  filterProducts = products => {
+  filterProducts = (products) => {
     const filteredProducts = products?.filter(
-      product => product.category?.toLowerCase() === this.props.params.category
+      (product) =>
+        product.category?.toLowerCase() === this.props.params.category
     );
     const len = filteredProducts?.length;
     return { filteredProducts, len };
   };
   render() {
+    console.log("@Shop");
     return (
       <Container>
         <HeaderComponent {...this.props} />
@@ -54,7 +56,7 @@ class Shop extends Component {
             />
             <Routes>
               <Route
-                path='all/*'
+                path="all/*"
                 element={
                   <ProductList {...this.props} products={this.props.products} />
                 }

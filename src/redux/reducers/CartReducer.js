@@ -1,7 +1,10 @@
 import { ActionTypes } from "../constants/Types";
 
 export const CartReducer = (storeData, action) => {
-  console.log("#CartReducer");
+  console.group("%c @CartReducer ", "background: #222; color: #bada55");
+  console.log("storeData => ", storeData);
+  console.log("action => ", action);
+  console.groupEnd();
   const { type, payload } = action;
   // 'payload' && addded due to applyMiddleware
   const prod = payload && payload.product;

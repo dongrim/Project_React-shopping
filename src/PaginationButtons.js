@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
+import React, { Component } from "react";
+import styled from "styled-components";
 
 const Container = styled.div`
   /* border: 1px solid blue; */
 `;
 const Pagination = styled.ul`
-  /* border: 1px solid blue; */
   display: flex;
   text-align: center;
   margin: 0;
@@ -33,7 +32,6 @@ const Pagination = styled.ul`
   }
 `;
 const Li = styled.li`
-  /* border: 1px solid #9f9f9f; */
   border-radius: 3px;
   list-style: none;
   width: 42px;
@@ -41,8 +39,8 @@ const Li = styled.li`
   margin-right: 7px;
   color: black;
   /* selected will be decided by query string of url */
-  background: ${({ selected }) => (selected ? 'white' : '#cfcfcf')};
-  outline: ${({ selected }) => (selected ? '1px solid orange' : 'none')};
+  background: ${({ selected }) => (selected ? "white" : "#cfcfcf")};
+  outline: ${({ selected }) => (selected ? "1px solid orange" : "none")};
   &:hover {
     outline: 1px solid black;
     background: #bfbfbf;
@@ -73,12 +71,12 @@ export class PaginationButtons extends Component {
     const pageCount = Number(this.props.pageCount);
     const navigate = this.props.navigateToPage;
 
-    console.log('PaginationButtons =>', this.props);
+    // console.log("PaginationButtons =>", this.props);
     return (
       <Container>
         <Pagination>
           <Li
-            className={`prevBtn ${current === 1 ? 'disabled' : ''}`}
+            className={`prevBtn ${current === 1 ? "disabled" : ""}`}
             onClick={() => navigate(current - 1)}
           >
             ← Previous
@@ -86,14 +84,14 @@ export class PaginationButtons extends Component {
           {current > 4 && (
             <>
               <Li onClick={() => navigate(1)}>1</Li>
-              <Li className='dots'>···</Li>
+              <Li className="dots">···</Li>
             </>
           )}
           {this.getPageNumbers().map((pageNumber, idx) => (
             <Li
               key={idx}
               className={`pageBtn ${
-                Number(pageNumber) === current ? 'selected' : ''
+                Number(pageNumber) === current ? "selected" : ""
               }`}
               onClick={() => navigate(pageNumber)}
             >
@@ -102,12 +100,12 @@ export class PaginationButtons extends Component {
           ))}
           {current < pageCount - 2 && (
             <>
-              <Li className='dots'>···</Li>
+              <Li className="dots">···</Li>
               <Li onClick={() => navigate(pageCount)}>{pageCount}</Li>
             </>
           )}
           <Li
-            className={`nextBtn ${current === pageCount ? 'disabled' : ''}`}
+            className={`nextBtn ${current === pageCount ? "disabled" : ""}`}
             onClick={() => navigate(current + 1)}
           >
             Next &nbsp;&nbsp; →

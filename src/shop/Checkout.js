@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
-import { HeaderComponent } from '../layout';
-import { Link } from 'react-router-dom';
+import React, { Component } from "react";
+import styled from "styled-components";
+import { HeaderComponent } from "../layout";
+import { Link, useNavigate } from "react-router-dom";
+import { ValidatedForm } from "../forms/ValidatedForm";
 
 const Container = styled.div``;
 const SectionWrapper = styled.div`
@@ -12,62 +13,57 @@ const SectionWrapper = styled.div`
 const Header = styled.h2`
   margin-bottom: 30px;
 `;
-const Title = styled.h4`
-  text-transform: capitalize;
-`;
-const InputWrapper = styled.div`
-  margin-bottom: 25px;
-`;
-const Input = styled.input.attrs(({ type }) => ({ type }))`
-  width: 100%;
-  line-height: 2.2;
-  padding-left: 5px;
-`;
-const ButtonWrapper = styled.div`
-  text-align: center;
-`;
-const LinkBtn = styled(Link)`
-  margin-right: 8px;
-  border: none;
-  color: white;
-  background: #5f5f5f;
-  outline: 1px solid black;
-  padding: 6px 10px;
-  border-radius: 4px;
-  text-decoration: none;
-  &:hover {
-    color: white;
-  }
-`;
 
 export class Checkout extends Component {
-  checkoutFields = {
-    name: 'text',
-    email: 'email',
-    address: 'text',
-    city: 'text',
-    'zip/postal code': 'number',
-    country: 'text',
+  defaultAttrs = {
+    type: "text",
+    require: true,
+  };
+  formModel = {
+    name: "text",
+    email: "email",
+    address: "text",
+    city: "text",
+    "zip/postal code": "number",
+    country: "text",
+  };
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    const len = this.props.cart.length;
+    const products = [];
+    for (let i = 0; i < len; i++) {
+      let dump = {
+        quentity: this.props.cart[i].quantity,
+        product_id: this.props.cart[i].product.id,
+      };
+      products.push(dump);
+    }
+    const order = {
+      name: event.target.name.value,
+      email: event.target.email.value,
+      address: event.target.address.value,
+      city: event.target.city.value,
+      zip: event.target["zip/postal code"].value,
+      country: event.target.country.value,
+      products,
+    };
+    this.props.placeOrder(order);
   };
 
   render() {
+    console.log(this.props);
     return (
       <Container>
         <HeaderComponent />
         <SectionWrapper>
           <Header>Add a new address</Header>
-          {Object.entries(this.checkoutFields).map((attr, idx) => (
-            <InputWrapper key={idx}>
-              <Title>{attr[0]}</Title>
-              <Input type={attr[1]} />
-            </InputWrapper>
-          ))}
-          <ButtonWrapper>
-            {/* <Button onClick={this.handleReturn}>Return to Cart</Button>
-            <Button onClick={this.handleSubmit}>Place Order</Button> */}
-            <LinkBtn to='/shop/cart'>Return to Cart</LinkBtn>
-            <LinkBtn to='/shop/thanks'>Place Order</LinkBtn>
-          </ButtonWrapper>
+          <ValidatedForm
+            formModel={this.formModel}
+            submitCallback={this.handleSubmit}
+            submitText="Place Order"
+            cancelText="Return to Cart"
+          />
         </SectionWrapper>
       </Container>
     );
