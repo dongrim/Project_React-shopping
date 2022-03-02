@@ -1,7 +1,6 @@
 import { ActionTypes } from "../constants/Types";
 
 export const addToCart = (product, quantity) => {
-  console.log("#action-addToCart");
   // console.log("@addToCart: ", product, quantity);
   return {
     type: ActionTypes.CART_ADD,

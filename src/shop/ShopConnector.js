@@ -1,28 +1,27 @@
 import React, { Component } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { connect } from "react-redux";
-import { loadData } from "../redux/actions/ActionCreators.js";
+import { loadData, placeOrder } from "../redux/actions/ActionCreators";
 import {
   addToCart,
   updateCartQuantity,
   removeFromCart,
-} from "../redux/actions/CartActionCreators.js";
-import { DataTypes } from "../redux/constants/Types.js";
-import { withRouterShop as Shop } from "./Shop.js";
-import { CartDetails } from "./CartDetails.js";
-import { withRouterDataGetter as DataGetter } from "../data/DataGetter.js";
+} from "../redux/actions/CartActionCreators";
+import { DataTypes } from "../redux/constants/Types";
+import { withRouterShop as Shop } from "./Shop";
+import { withRouterDataGetter as DataGetter } from "../data/DataGetter";
+import { withRouterCartDetails as CartDetails } from "./CartDetails";
+import { Checkout } from "./Checkout";
+import { Thanks } from "./Thanks";
 
-// const mapStateToProps = (dataStore) => ({ ...dataStore });
-const mapStateToProps = (dataStore) => {
-  // console.log("%ShopConnector: ", dataStore);
-  return { ...dataStore };
-};
+const mapStateToProps = (dataStore) => ({ ...dataStore });
 
 const mapDispatchToProps = {
   loadData,
   addToCart,
   updateCartQuantity,
   removeFromCart,
+  placeOrder,
 };
 
 class ShopConnector extends Component {
@@ -42,6 +41,8 @@ class ShopConnector extends Component {
         </Route>
         <Route path="/" element={<Navigate to="/shop/products/all" />} />
         <Route path="cart" element={<CartDetails {...this.props} />} />
+        <Route path="checkout" element={<Checkout {...this.props} />} />
+        <Route path="thanks" element={<Thanks />} />
       </Routes>
     );
   }

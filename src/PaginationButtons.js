@@ -5,7 +5,6 @@ const Container = styled.div`
   /* border: 1px solid blue; */
 `;
 const Pagination = styled.ul`
-  /* border: 1px solid blue; */
   display: flex;
   text-align: center;
   margin: 0;
@@ -33,7 +32,6 @@ const Pagination = styled.ul`
   }
 `;
 const Li = styled.li`
-  /* border: 1px solid #9f9f9f; */
   border-radius: 3px;
   list-style: none;
   width: 42px;
@@ -52,6 +50,14 @@ const Li = styled.li`
 export class PaginationButtons extends Component {
   getPageNumbers = () => {
     const n = this.props.currentPage;
+    if (this.props.pageCount < 5) {
+      const pageArr = [1, 2, 3, 4];
+      const len = 4 - this.props.pageCount;
+      for (let i = 0; i < len; i++) {
+        pageArr.pop();
+      }
+      return pageArr;
+    }
     if (this.props.currentPage < 5) {
       return [1, 2, 3, 4, 5];
     } else {
@@ -71,7 +77,6 @@ export class PaginationButtons extends Component {
     const pageCount = Number(this.props.pageCount);
     const navigate = this.props.navigateToPage;
 
-    console.log("PaginationButtons =>", this.props);
     return (
       <Container>
         <Pagination>
@@ -81,7 +86,7 @@ export class PaginationButtons extends Component {
           >
             ← Previous
           </Li>
-          {current > 4 && (
+          {pageCount > 5 && current > 4 && (
             <>
               <Li onClick={() => navigate(1)}>1</Li>
               <Li className="dots">···</Li>
@@ -90,15 +95,16 @@ export class PaginationButtons extends Component {
           {this.getPageNumbers().map((pageNumber, idx) => (
             <Li
               key={idx}
-              className={`pageBtn ${
-                Number(pageNumber) === current ? "selected" : ""
-              }`}
+              className={`
+                pageBtn
+                ${Number(pageNumber) === current ? "selected" : ""}
+              `}
               onClick={() => navigate(pageNumber)}
             >
               {pageNumber}
             </Li>
           ))}
-          {current < pageCount - 2 && (
+          {pageCount > 5 && current < pageCount - 2 && (
             <>
               <Li className="dots">···</Li>
               <Li onClick={() => navigate(pageCount)}>{pageCount}</Li>

@@ -3,20 +3,17 @@ import styled from "styled-components";
 import { PaginationButtons } from "./PaginationButtons.js";
 
 const Container = styled.div`
-  /* border: 1px solid blue; */
-`;
-const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 0 0 15px;
 `;
 
 const PageOption = styled.div`
-  /* border: 1px solid blue; */
   width: 100%;
   text-align: center;
-  padding: 5px 0 8px;
+  padding-top: 15px;
   select {
     border-radius: 3px;
     text-align: center;
@@ -45,34 +42,32 @@ export class PaginationControls extends Component {
   render() {
     return (
       <Container>
-        <Wrapper>
-          <PaginationButtons {...this.props} />
-          <PageOption>
-            <select
-              name="perPage"
-              onChange={this.handlePageSizeChange}
-              value={this.props.pageSize || this.pageSizes[0]}
-            >
-              {this.pageSizes.map((pageSize, idx) => (
-                <option key={idx} value={pageSize}>
-                  {pageSize} per page
-                </option>
-              ))}
-            </select>
-            <select
-              name="sortOption"
-              onChange={this.handleSortPropertyChange}
-              value={this.props.sortKey || "#"}
-            >
-              <option value="#">Choose Sort Option</option>
-              {this.sortKeys.map((sortKey, idx) => (
-                <option key={idx} value={sortKey.toLowerCase()}>
-                  Sort By {sortKey}
-                </option>
-              ))}
-            </select>
-          </PageOption>
-        </Wrapper>
+        <PaginationButtons {...this.props} />
+        <PageOption>
+          <select
+            name="perPage"
+            onChange={this.handlePageSizeChange}
+            value={this.props.pageSize || this.pageSizes[0]}
+          >
+            {this.pageSizes.map((pageSize, idx) => (
+              <option key={idx} value={pageSize}>
+                {pageSize} per page
+              </option>
+            ))}
+          </select>
+          <select
+            name="sortOption"
+            onChange={this.handleSortPropertyChange}
+            value={this.props.sortKey || "home"}
+          >
+            <option value={"home"}>Choose Sort Option</option>
+            {this.sortKeys.map((sortKey, idx) => (
+              <option key={idx} value={sortKey.toLowerCase()}>
+                Sort By {sortKey}
+              </option>
+            ))}
+          </select>
+        </PageOption>
       </Container>
     );
   }

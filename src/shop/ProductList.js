@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
-const Container = styled.div`
-  /* border: 3px solid blue; */
-`;
+const Container = styled.div``;
 const Article = styled.div`
   border: 1px solid blue;
   height: 60vh; // no products height
@@ -86,31 +84,40 @@ export class ProductList extends Component {
           <span>No Products</span>
         </Article>
       );
+
+    const n = this.props.products_params?._page;
+    const t = this.props.products_params?._limit;
+
     return (
       <Container>
-        {this.props.products?.map((product, idx) => {
-          return (
-            <WrapperProduct key={idx}>
-              <Title>
-                <Name>{product.name}</Name>
-                <Price>
-                  <span>{product.price}</span>
-                </Price>
-              </Title>
-              <Description>
-                <div className="text">{product.description}</div>
-                <div
-                  className="addBtn"
-                  onClick={() => {
-                    this.props.addToCart(product, null);
-                  }}
-                >
-                  add to cart
-                </div>
-              </Description>
-            </WrapperProduct>
-          );
-        })}
+        {this.props.products
+          // ?.slice(0, this.props.products_params?._limit)
+          ?.slice(t * (n - 1), t * n)
+          .map((product, idx) => {
+            return (
+              <WrapperProduct key={idx}>
+                <Title>
+                  <Name>
+                    {idx + 1}.{product.name}
+                  </Name>
+                  <Price>
+                    <span>{product.price}</span>
+                  </Price>
+                </Title>
+                <Description>
+                  <div className="text">{product.description}</div>
+                  <div
+                    className="addBtn"
+                    onClick={() => {
+                      this.props.addToCart(product, null);
+                    }}
+                  >
+                    add to cart
+                  </div>
+                </Description>
+              </WrapperProduct>
+            );
+          })}
       </Container>
     );
   }
