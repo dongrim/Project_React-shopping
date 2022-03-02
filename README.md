@@ -22,7 +22,7 @@
 - react-dom
 - react-redux
 
-> ### dependency
+> ### Dependency
 
 - applyMiddleware (redux)
 - chancejs (sub. faker)
@@ -46,6 +46,21 @@
 > ### Husky & lint-staged
 
 - blank
+
+> ### CSS & Icons
+
+```js
+1) CDN
+import "bootstrap/dist/css/bootstrap.min.css";
+import "@fortawesome/fontawesome-free/css/all.min.css";
+
+<i className="fa fa-shipping-fast text-success" />
+<i className="fa fa-exclamation-circle text-danger" />
+
+2) Modules
+@fortawesome/fontawesome-free
+bootstrap, react-bootstrap
+```
 
 > ### etc.
 

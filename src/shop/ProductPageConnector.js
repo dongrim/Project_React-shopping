@@ -1,17 +1,18 @@
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 import {
   setPageSize,
   setSortProperty,
-} from '../redux/actions/ActionCreators.js';
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
+} from "../redux/actions/ActionCreators.js";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 
 let lengthOfFiltered;
 
-const withRouter = WrappedComponent => props => {
+const withRouter = (WrappedComponent) => (props) => {
   const params = useParams();
   const location = useLocation();
   const navigate = useNavigate();
   lengthOfFiltered = props.lengthOfFiltered;
+  console.warn(props);
   return (
     <WrappedComponent
       {...props}
@@ -22,7 +23,7 @@ const withRouter = WrappedComponent => props => {
   );
 };
 
-const mapStateToProps = dataStore => ({ ...dataStore });
+const mapStateToProps = (dataStore) => ({ ...dataStore });
 const mapDispatchToProps = {
   setPageSize,
   setSortProperty,
@@ -44,12 +45,12 @@ const mergeProps = (dataStore, actionCreators, router) => {
     ...router,
     currentPage: Number(router.params.page) || 1,
     pageCount,
-    navigateToPage: page =>
+    navigateToPage: (page) =>
       router.navigate(`/shop/products/${router.params.category}/${page}`),
   };
 };
 
-export const ProductPageConnector = PaginationControls =>
+export const ProductPageConnector = (PaginationControls) =>
   withRouter(
     connect(mapStateToProps, mapDispatchToProps, mergeProps)(PaginationControls)
   );

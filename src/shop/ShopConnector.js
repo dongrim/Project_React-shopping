@@ -26,7 +26,6 @@ const mapDispatchToProps = {
 
 class ShopConnector extends Component {
   render() {
-    console.log("@ShopConnector");
     return (
       <Routes>
         <Route

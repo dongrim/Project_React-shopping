@@ -5,10 +5,10 @@ import { CommonReducer } from "../reducers/CommonReducer";
 import { asyncActions } from "../../data/AsyncMiddleware";
 import { createLogger } from "redux-logger";
 
-// const logger = createLogger({});
+const logger = createLogger({});
 
 export const SportsStoreDataStore = createStore(
   CommonReducer(ShopReducer, CartReducer),
-  applyMiddleware(asyncActions)
-  // applyMiddleware(asyncActions, logger)
+  // applyMiddleware(asyncActions)
+  applyMiddleware(asyncActions, logger)
 );

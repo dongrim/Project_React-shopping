@@ -5,10 +5,10 @@ const initialState = {
 };
 
 export const ShopReducer = (state = initialState, action) => {
-  console.group("%c @ShopReducer ", "background: blue; color: yellow");
-  console.log("state => ", state);
-  console.log("action => ", action);
-  console.groupEnd();
+  // console.group("%c @ShopReducer ", "background: blue; color: yellow");
+  // console.log("state => ", state);
+  // console.log("action => ", action);
+  // console.groupEnd();
   const { type, payload } = action;
 
   switch (type) {

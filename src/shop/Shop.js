@@ -42,7 +42,6 @@ class Shop extends Component {
     return { filteredProducts, len };
   };
   render() {
-    console.log("@Shop");
     return (
       <Container>
         <HeaderComponent {...this.props} />

@@ -2,8 +2,10 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 8010;
 const cors = require("cors");
-const cookieParser = require("cookie-parser");
-const { products, categories } = require("./db/chance.js");
+// const cookieParser = require("cookie-parser");
+const { products, categories } = require("../db/chance");
+const db = require("../db/chance");
+const chokidar = require("chokidar");
 
 const corsOptions = {
   origin: "*",
@@ -12,6 +14,10 @@ const corsOptions = {
 };
 
 const myLogger = (req, res, next) => {
+  // chokidar.watch("../db/chance.js").on("all", (event, path) => {
+  //   console.log("==>", "event: ", event);
+  //   console.log("==>", "path: ", path);
+  // });
   console.log("==============================");
   console.log("req.params: ", req.params);
   console.log("originalUrl: ", req.originalUrl);
@@ -20,13 +26,12 @@ const myLogger = (req, res, next) => {
 };
 
 app.use(cors(corsOptions));
-app.use(cookieParser());
+// app.use(cookieParser());
 app.use("/api/products", myLogger);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// http://localhost:8010/api/products?
-// category_like=watersports&_page=2&_limit=3&_sort=name
+// http://localhost:8010/api/products?category_like=watersports&_page=2&_limit=3&_sort=name
 
 app.get("/api/products", (req, res) => {
   res.set("X-Total-Count", products.length);
@@ -45,6 +50,7 @@ app.get("/api/categories", (req, res) => {
   res.send(response);
 });
 
+let orderObj = {};
 let orders = [];
 let id;
 
@@ -54,9 +60,24 @@ app.post("/api/orders", (req, res) => {
   } else {
     id++;
   }
-  orders.push({ ...req.body, id });
-  console.log(orders);
-  res.send(orders);
+  orderObj = {
+    orders_summary: {
+      totalSize: orders.length + 1,
+      orders,
+    },
+  };
+  orders.push({
+    id,
+    ...req.body,
+    shipped: false,
+  });
+  res.send(orderObj);
+  console.dir(orderObj);
+});
+
+app.get("/api/orders", (req, res) => {
+  // res.send(orderObj);
+  res.send(db.orders);
 });
 
 app.listen(port, () => console.log("Server is running on PORT: %d", port));
